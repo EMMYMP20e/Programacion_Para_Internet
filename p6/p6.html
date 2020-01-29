@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Práctica 6</title>
+
+    <script>
+        function valida(){
+            var user=document.formulario.user.value;
+            var pass=document.formulario.password.value;
+            var rol=document.formulario.rol.value;
+            console.log(user)
+            console.log(pass)
+            console.log(rol)
+            if(user!="" && pass!="" && rol!=0){
+                alert("Campos llenos");
+            }
+            else{
+                alert("Campos por llenar");
+            }
+        }
+    </script>
+</head>
+<body>
+    <form name="formulario">
+        <label for="user">User:</label>
+        <input type="text" name="user" placeholder="User">
+        <br>
+        <label for="user">Password:</label>
+        <input type="password" name="password" placeholder="Password">
+        <br>
+        <select name="rol">
+            <option value="0">Seleccionar Rol</option>
+            <option value="1">Gerente</option>
+            <option value="2">Ejecutivo</option>
+        </select>
+        <br>
+        <input type="button" value="Enviar" onClick="valida()">
+    </form>
+</body>
+</html>
