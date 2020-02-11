@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script>
+        function muestra() {
+            //# para id
+            //. para class/name
+            //var user = document.forma01.nombre.value;
+            var user = $('#nombre').val();
+            alert(user);
+        }
+        function elimina() {
+            //$('#maestro1').hide();
+            $('.alumno').hide();
+            //$('#mensaje').html('Eliminando...');
+            $('#mensaje').html('<img src="imagenes/loading.gif"/>');
+            setTimeout("$('#mensaje').html('')",3000);
+        }
+    </script>
+    <style>
+        #mensaje{
+            color: #F00;
+            font-size: 15px;
+            font-weight: bold;
+            width: 100px;
+            height: 15px;
+            background-color: #ccc;
+            text-align: center;
+        }
+
+        .alumno{
+            color: #f0f;
+            line-height: 22px;
+        }
+
+        .reprobado {
+            background-color: #F00;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" name="nombre" id="nombre" placeholder="Escribre tu Usuario" /><br>
+    <input type="text" name="correo" id="correo" value="@" /><br>
+    <select name="rol" id="rol">
+        <option value="0">Selecciona</option>
+        <option value="1">Administrador</option>
+        <option value="2">Usuario</option>
+    </select>
+    <br>
+    <input onClick="muestra();" type="submit" value="Enviar" />
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="alumno">Rubén Maldonado</div>
+    <div class="alumno">Aaron Jimenez</div>
+    <div class="alumno reprobado">Marisela Guzman</div>
+    <div class="maestro" id="maestro1">Patricia Lopez</div><br><br>
+    <input onclick="elimina();" type="submit" value="Eliminar" /><br><br>
+    <div id="mensaje"></div>
+</body>
+
+</html>
