@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Práctica</title>
+    <script>
+        var numero1 = 0;
+        var numero2;
+        var operacion = 0;
+        var unPunto = false
+        function agregaNum(digito) {
+            if (digito == '.' && !unPunto) {
+                unPunto = true;
+                document.formulario.display.value += digito;
+            }
+            else if (digito != '.') {
+                document.formulario.display.value += digito;
+            }
+        }
+
+        function selecOperacion() {
+            operacion = document.formulario.operacion.value;
+            if (operacion != 0) {
+                numero1 = document.formulario.display.value;
+                document.formulario.display.value = "";
+                unPunto = false;
+            }
+        }
+
+        function calcular() {
+            numero2 = document.formulario.display.value;
+            let resultado;
+            switch (operacion) {
+                case '+':
+                    resultado = numero1 + numero2;
+                    break;
+                case '-':
+                    resultado = numero1 - numero2;
+                    break;
+                case '*':
+                    resultado = numero1 * numero2;
+                    break;
+                case '/':
+                    resultado = numero1 / numero2;
+                    break;
+                case '0':
+                    resultado = numero1;
+            }
+            document.formulario.display.value = resultado;
+        }
+
+    </script>
+</head>
+
+<body>
+    <form name="formulario">
+        <input type="text" name="display" disabled>
+        <br>
+        <table border="0" width="150" height="170">
+            <tr height="25%">
+                <td align="center" valign="middle" width="33.3%">
+                    <input type="button" value=" 9 " onClick="agregaNum(9)">
+                </td>
+                <td align="center" valign="middle" width="33.3%">
+                    <input type="button" value=" 8 " onClick="agregaNum(8)">
+                </td>
+                <td align="center" valign="middle" width="33.3%">
+                    <input type="button" value=" 7 " onClick="agregaNum(7)">
+                </td>
+            </tr>
+            <tr height="25%">
+                <td align="center" valign="middle" width="33.3%">
+                    <input type="button" value=" 6 " onClick="agregaNum(6)">
+                </td>
+                <td align="center" valign="middle" width="33.3%">
+                    <input type="button" value=" 5 " onClick="agregaNum(5)">
+                </td>
+                <td align="center" valign="middle" width="33.3%">
+                    <input type="button" value=" 4 " onClick="agregaNum(4)">
+                </td>
+            </tr>
+            <tr height="25%">
+                <td align="center" valign="middle" width="33.3%">
+                    <input type="button" value=" 3 " onClick="agregaNum(3)">
+                </td>
+                <td align="center" valign="middle" width="33.3%">
+                    <input type="button" value=" 2 " onClick="agregaNum(2)">
+                </td>
+                <td align="center" valign="middle" width="33.3%">
+                    <input type="button" value=" 1 " onClick="agregaNum(1)">
+                </td>
+            </tr>
+            <tr height="25%">
+                <td align="center" valign="middle" width="33.3%">
+                    <input type="button" value=" . " onClick="agregaNum('.')">
+                </td>
+                <td align="center" valign="middle" width="33.3%">
+                    <input type="button" value=" 0 " onClick="agregaNum(0)">
+                </td>
+                <td align="center" valign="middle" width="33.3%">
+                    <input type="button" value=" = " onClick="calcular()">
+                </td>
+            </tr>
+
+        </table>
+
+        <select name="operacion" onchange="selecOperacion()">
+            <option value="0">Selecciona</option>
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+    </form>
+
+
+
+
+</body>
+
+</html>
