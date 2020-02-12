@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Lenguajes de Programación</title>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script>
+        function eliminar(id) {
+            $(id).hide();
+        }
+    </script>
+    <style>
+        button {
+            background-color: #D32F2F;
+            color: white;
+            border-radius: 8px;
+            border: none;
+            font-size: 16px;
+            margin: 4px 2px;
+            padding: 10px 40px;
+            text-decoration: none;
+        }
+
+        #titulo {
+            background-color: #009688;
+            color: white;
+            font: bold;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: larger;
+        }
+
+        td,
+        th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        #tabla{
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+
+<body>
+    <table id="tabla" align="center" border="1" width="960">
+        <tr height="100">
+            <td id="titulo" align="center" valign="middle" colspan="3">Lenguajes de Programación</td>
+        </tr>
+        <tr id="fila1" height="200">
+            <td width="34%" align="center" valign="middle"><a href="https://www.javascript.com/" target="_blank">
+                    <img src="Imagenes/js.png" width="100px" height="100px">
+                </a></td>
+            <td width="33%" align="center" valign="middle"><a href="https://www.javascript.com/" target="_blank">
+                    JavaScript
+                </a></td>
+            <td align="center" valign="middle"><button onclick="eliminar('#fila1')">Eliminar</button></td>
+        </tr>
+        <tr id="fila2" height="200">
+            <td width="34%" align="center" valign="middle"><a href="https://docs.microsoft.com/en-us/dotnet/csharp/"
+                    target="_blank">
+                    <img src="Imagenes/cs.svg" width="100px" height="100px">
+                </a></td>
+            <td width="33%" align="center" valign="middle"><a href="https://docs.microsoft.com/en-us/dotnet/csharp/"
+                    target="_blank">
+                    C#
+                </a></td>
+            <td align="center" valign="middle"><button onclick="eliminar('#fila2')">Eliminar</button></td>
+        </tr>
+        <tr id="fila3" height="200">
+            <td width="34%" align="center" valign="middle"><a href="https://www.python.org/" target="_blank">
+                    <img src="Imagenes/python.png" width="100px" height="100px">
+                </a></td>
+            <td width="33%" align="center" valign="middle"><a href="https://www.python.org/" target="_blank">
+                    Python
+                </a></td>
+            <td align="center" valign="middle"><button onclick="eliminar('#fila3')">Eliminar</button></td>
+
+        </tr>
+        <tr id="fila4" height="200">
+            <td width="34%" align="center" valign="middle"><a href="https://www.java.com/es/" target="_blank">
+                    <img src="Imagenes/java.png" width="100px" height="100px">
+                </a></td>
+            <td width="33%" align="center" valign="middle"><a href="https://www.java.com/es/" target="_blank">
+                    Java
+                </a></td>
+            <td align="center" valign="middle"><button onclick="eliminar('#fila4')">Eliminar</button></td>
+
+        </tr>
+        <tr id="fila5" height="200">
+            <td width="34%" align="center" valign="middle"><a href="http://www.cplusplus.com/" target="_blank">
+                    <img src="Imagenes/c++.png" width="100px" height="100px">
+                </a></td>
+            <td width="33%" align="center" valign="middle"><a href="http://www.cplusplus.com/" target="_blank">
+                    C++
+                </a></td>
+            <td align="center" valign="middle"><button onclick="eliminar('#fila5')">Eliminar</button></td>
+
+        </tr>
+    </table>
+</body>
+
+</html>
