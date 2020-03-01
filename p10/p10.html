@@ -74,7 +74,7 @@
             display: flex;
         }
 
-        .C50 {
+        .CC {
             width: 100px;
             height: 900px;
         }
@@ -86,21 +86,81 @@
         }
 
         .CeldaResp {
-            display: table-cell;
+            display: flex;
             border: medium #C0C0C0 solid;
             border-width: thin;
             vertical-align: middle;
             width: 100%;
+            padding: 10px;
         }
 
-        .Grid{
+        .Grid {
             display: grid;
             width: 960px;
             height: 960px;
         }
-        .filaGrid{
+
+        .filaGrid {
             width: 100%;
             display: flex;
+            height: 100%;
+        }
+
+        .Miniatura {
+            width: 100%;
+            height: 100%;
+        }
+
+        .CeldaPorc {
+            border: medium #C0C0C0 solid;
+            border-width: thin;
+            vertical-align: middle;
+        }
+
+        .C10T {
+            height: 10.42%;
+            width: 100%;
+        }
+
+        .C10L {
+            width: 10.42%;
+            float: left height 100px;
+        }
+
+        .C90R {
+            width: 89.58%;
+        }
+
+        .Cel {
+            border: medium #C0C0C0 solid;
+            border-width: thin;
+        }
+
+        .row {
+            display: flex;
+            height: 89.57%;
+        }
+
+        .row2 {
+            display: flex;
+            height: 79.15%;
+        }
+
+        .C450f {
+            float: right;
+            height: 50%;
+            width: 100%;
+        }
+
+        .C5 {
+            width: 5.2%;
+        }
+        .fila100{
+            width: 100%;
+        }
+        .GridMini{
+            display: grid;
+            width: 100%;
             height: 100%;
         }
     </style>
@@ -110,7 +170,7 @@
 
     <div class="TablaGeneral">
         <div class="Fila">
-            <div class="CeldaTabla C50">
+            <div class="CeldaTabla CC">
                 <div class="Tabla Tabla960x100">
                     <div class="Fila Fila100 ">
                         <div class="Celda C100"></div>
@@ -170,12 +230,52 @@
             <div class="CeldaTabla">
                 <div class="Grid">
                     <div class="filaGrid">
-                        <div class="CeldaResp">a</div>
-                        <div class="CeldaResp">b</div>
+                        <div class="CeldaResp">
+                            <div class="CeldaPorc Miniatura">
+                                <div class="Cel C10T"></div>
+                                <div class="row">
+                                    <div class="Cel C10L"></div>
+                                    <div class="Cel C90R"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="CeldaResp">
+                            <div class="CeldaPorc Miniatura">
+                                <div class="Cel C10T"></div>
+                                <div class="row2">
+                                    <div class="Cel C50"></div>
+                                    <div class="Cel C50"></div>
+                                </div>
+                                <div class="Cel C10T"></div>
+                            </div>
+                        </div>
                     </div>
                     <div class="filaGrid">
-                        <div class="CeldaResp">c</div>
-                        <div class="CeldaResp">d</div>
+                        <div class="CeldaResp">
+                            <div class="CeldaPorc Miniatura">
+                                <div class="Cel C10T"></div>
+                                <div class="row2">
+                                    <div class="Cel C5"></div>
+                                    <div class="fila100">
+                                        <div class="Cel C450f"></div>
+                                        <div class="Cel C450f"></div>
+                                    </div>
+                                </div>
+                                <div class="Cel C10T"></div>
+                            </div>
+                        </div>
+                        <div class="CeldaResp">
+                            <div class="GridMini">
+                                <div class="filaGrid">
+                                    <div class="CeldaResp"></div>
+                                    <div class="CeldaResp"></div>
+                                </div>
+                                <div class="filaGrid">
+                                    <div class="CeldaResp"></div>
+                                    <div class="CeldaResp"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
