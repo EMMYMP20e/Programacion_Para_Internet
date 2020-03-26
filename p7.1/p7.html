@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Práctica 7</title>
+
+    <script>
+        function valida(){
+            var usuarios=Array('Juan','Luis','Carlos','Jose','Omar');
+            var passwords=Array('1234','2345','3456','4567','5678');
+
+            var user=document.formulario.user.value;
+            var pass=document.formulario.password.value;
+            var rol=document.formulario.rol.value;
+           
+            if(user!="" && pass!="" && rol!=0){
+                let index=usuarios.findIndex(usuario=>usuario===user);
+                if(index!=-1){
+                    if(passwords[index]==pass){
+                        alert("Bienvenido: "+user);
+                    }
+                    else{
+                        alert("Datos incorrectos");
+                    }
+                }
+                else{
+                    alert("No existe");
+                }
+            }
+            else{
+                alert("Campos por llenar");
+            }
+        }
+    </script>
+</head>
+<body>
+    <form name="formulario">
+        <label for="user">User:</label>
+        <input type="text" name="user" placeholder="User">
+        <br>
+        <label for="user">Password:</label>
+        <input type="password" name="password" placeholder="Password">
+        <br>
+        <select name="rol">
+            <option value="0">Seleccionar Rol</option>
+            <option value="1">Gerente</option>
+            <option value="2">Ejecutivo</option>
+        </select>
+        <br>
+        <input type="button" value="Enviar" onClick="valida()">
+    </form>
+</body>
+</html>
