@@ -45,7 +45,7 @@ $num = mysql_num_rows($res);
         <div class="contenedor-header contenido-header">
 
                 <ul>
-                    <li><a href="#home">Bienvenido</a></li>
+                    <li><a href="bienvenida.php">Bienvenido</a></li>
                     <li><a href="lista_administradoresHTML.php">Listado </a></li>
                     <li><a href="formulario_alta.php">Alta </a></li>
                     <li><a href="#about">Edicion </a></li>

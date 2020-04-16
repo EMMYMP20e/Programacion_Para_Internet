@@ -5,7 +5,7 @@
     <title>Editar</title>
 
     <style>
-        
+
     </style>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script>
@@ -17,22 +17,21 @@
             var nombre = document.formulario.nombre.value;
             var apellidos = document.formulario.apellidos.value;
             var correo = document.formulario.correo.value;
-            var password = document.formulario.password.value;
+            var password = document.formulario.pass.value;
             var rol = document.formulario.rol.value;
 
-            if (nombre != "" && apellidos != "" && correo != "" && password != "" && rol != 0) {
+            var formData = new FormData($("form#formulario")[0]);
+            formData.append('id',id);
+
+            if (nombre != "" && apellidos != "" && correo != "" && rol != 0) {
                 $.ajax({
                     url: 'edita_administrador.php',
                     type: 'post',
-                    data: {
-                        id: id,
-                        nombre: nombre,
-                        apellidos: apellidos,
-                        correo: correo,
-                        pass: password,
-                        rol: rol
-                    },
+                    data: formData,
+                    processData: false,
+                    contentType: false,
                     success: function(msg) {
+                        console.log(msg);
                         if (msg == 1) {
                             $(location).attr('href', 'lista_administradoresHTML.php');
                         } else {
@@ -45,10 +44,14 @@
                 });
             } else {
                 alert("Campos por llenar");
+
+
             }
+
         }
     </script>
-`   <link rel="stylesheet" href="css/styles.css">
+    `
+    <link rel="stylesheet" href="css/styles.css">
 
 </head>
 
@@ -65,19 +68,18 @@
         $nombre = mysql_result($res, $i, "nombre");
         $apellidos = mysql_result($res, $i, "apellidos");
         $correo = mysql_result($res, $i, "correo");
-        $pass = mysql_result($res, $i, "pass");
         $rol = mysql_result($res, $i, "rol");
+        $archivo_n = mysql_result($res, $i, "archivo_n");
     }
     ?>
 
     <main class="contenedor seccion contenido-centrado">
         <button class="btnRegresar" onclick="regresa()">Regresar</button>
-        <form name="formulario" class="contacto">
+        <form name="formulario" id="formulario" class="contacto" method="post" enctype="multipart/form-data">
             <fieldset>
                 <?php
                 echo "
-                
-                
+                               
                 <legend>Editar ID: $id</legend>
         <label for=\"nombre\">Nombre:</label>
         <input value=$nombre type=\"text\" name=\"nombre\">
@@ -86,8 +88,8 @@
         <input value=$apellidos type=\"text\" name=\"apellidos\">
         <label for=\"correo\">Correo:</label>
         <input value=$correo type=\"email\" name=\"correo\">
-        <label for=\"password\">Password:</label>
-        <input value=$pass type=\"password\" name=\"password\">"; ?>
+        <label for=\"pass\">Password:</label>
+        <input type=\"password\" name=\"pass\">"; ?>
                 <label for="rol">Rol:</label>
                 <select name="rol">
                     <option value="0">Seleccionar Rol</option>"
@@ -98,14 +100,21 @@
                                             echo ("selected");
                                         } ?>>Ejecutivo</option>
                 </select>
-            </fieldset>
 
+                <?php
+                echo "
+            <img src=\"archivos/$archivo_n\" width=\"100px\" height=\"100px\">
+                "; ?>
+                <label for="archivo">Cambiar Foto:</label>
+                <input type="file" name="archivo">
+
+
+            </fieldset>
         </form>
         <?php
         echo "<button class=\"btnEnviar\"onclick=\"valida('$id')\">Enviar</button>";
         ?>
     </main>
-
 </body>
 
 </html>

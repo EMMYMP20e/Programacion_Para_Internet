@@ -13,27 +13,22 @@
 </head>
 
 <body>
-    <?php
-    require "conecta.php";
-    $con = conecta();
-    $id = $_REQUEST['id'];
 
-    $sql = "SELECT * FROM Administradores WHERE id=$id";
-    $res = mysql_query($sql, $con);
-    $num = mysql_num_rows($res);
-    for ($i = 0; $i < $num; $i++) {
-        $nombre = mysql_result($res, $i, "nombre");
-        $apellidos = mysql_result($res, $i, "apellidos");
-        $correo = mysql_result($res, $i, "correo");
-        $rol = mysql_result($res, $i, "rol");
-        $status = mysql_result($res, $i, "status");
-        $archivo_n = mysql_result($res, $i, "archivo_n");
-    }
-    ?>
+    <header class="site-header">
+        <div class="contenedor-header contenido-header">
+
+            <ul>
+                <li><a href="bienvenida.php">Bienvenido</a></li>
+                <li><a href="lista_administradoresHTML.php">Listado </a></li>
+                <li><a href="formulario_alta.php">Alta </a></li>
+                <li><a href="#about">Edicion </a></li>
+                <li><a href="#about">Detalle </a></li>
+            </ul>
+
+        </div> <!-- contenedor -->
+    </header>
 
     <main class="contenedor seccion contenido-centrado">
-        <button class="btnRegresar" onclick="regresa()">Regresar</button>
-
         <div class="anuncio">
             <div class="contenido-anuncio">
                 <?php
@@ -57,8 +52,8 @@
                 } else {
                     echo "<p>Inactivo</p>";
                 }
-                
-                 ?>
+
+                ?>
             </div>
         </div>
 

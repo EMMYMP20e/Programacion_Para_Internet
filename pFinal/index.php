@@ -18,9 +18,8 @@
                         pass:password
                     },
                     success: function(res) {
-                        console.log(res);
                         if (res == 1) {
-                            $(location).attr('href', 'lista_administradoresHTML.php');
+                            $(location).attr('href', 'bienvenida.php');
                         } 
                         else {
                             alert('El usuario o password no existe');

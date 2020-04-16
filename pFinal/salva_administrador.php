@@ -6,6 +6,7 @@ $con = conecta();
 $nombre=$_REQUEST['nombre'];
 $apellidos=$_REQUEST['apellidos'];
 $pass=$_REQUEST['password'];
+$pass=md5($pass);
 $correo=$_REQUEST['correo'];
 $rol=$_REQUEST['rol'];
 
@@ -30,5 +31,3 @@ $sql = "INSERT INTO administradores VALUES
 
 $res = mysql_query($sql, $con);
 header("Location: lista_administradoresHTML.php");
-
-?>
