@@ -1,5 +1,9 @@
 <?php
 session_start();
+$idU = $_SESSION['id'];
+if($idU!=''){
+    header("Location: bienvenida.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -19,23 +23,31 @@ session_start();
                     type: 'post',
                     data: {
                         correo: correo,
-                        pass:password
+                        pass: password
                     },
                     success: function(res) {
                         if (res == 1) {
                             $(location).attr('href', 'bienvenida.php');
-                        } 
-                        else {
-                            alert('El usuario o password no existe');
+                        } else {
+                            error('El usuario o password no existe');
                         }
                     },
                     error: function() {
-                        alert('Error al conectar al servidor...');
+                        error('Error al conectar al servidor...');
                     }
                 });
             } else {
-                alert("Campos por llenar");
+                error('Datos Incompletos');
             }
+        }
+
+        function error(mensaje) {
+            $('#mensaje').html(mensaje);
+            $('#mensaje').animate({
+                height: "3rem"
+            });
+            setTimeout("$('#mensaje').html('');", 5000);
+            setTimeout("$('#mensaje').animate({height:\"0rem\"});", 5000);
         }
     </script>
     <link rel="stylesheet" href="css/styles.css">
@@ -43,7 +55,7 @@ session_start();
 </head>
 
 <body>
-    <main class="contenedor seccion contenido-centrado-login">
+    <main class="contenedor seccion contenido-centrado-login margen-login">
         <form name="formulario" class="contacto">
             <fieldset>
                 <legend>Login</legend>
@@ -53,7 +65,7 @@ session_start();
                 <input type="password" name="password">
             </fieldset>
         </form>
-
+        <div id="mensaje" class="mensaje"></div>
         <button class="btnLogin" onclick="login()">Entrar</button>
 
     </main>

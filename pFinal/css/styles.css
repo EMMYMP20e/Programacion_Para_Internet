@@ -7,6 +7,7 @@ html {
 body {
     background-color: #009688;
     color: #00796b;
+    background: linear-gradient(to right, #03dac6, #018786);
     font-family: base-font-family;
     font: bold;
     font-family: Arial, Helvetica, sans-serif;
@@ -16,7 +17,7 @@ body {
 }
 
 .site-header {
-    background-color: #009688;
+    background: linear-gradient(to right, #03dac6, #018786);
     padding: 0 0 3rem 0;
 }
 .contenedor {
@@ -43,6 +44,9 @@ body {
 
 .contenido-centrado-login {
     max-width: 600px;
+}
+.margen-login{
+    margin-top: 3rem;
 }
 
 .contenido-header {
@@ -78,6 +82,10 @@ li a {
 li a:hover {
     background-color: #3700b3;
 }
+
+li:last-child {
+    float:right
+  }
 
 legend {
     font-size: 2rem;
@@ -207,4 +215,9 @@ img {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+.mensaje{
+    color: #d32f2f;
+    padding-left: 2rem;
 }

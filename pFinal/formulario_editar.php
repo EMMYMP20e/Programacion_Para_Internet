@@ -1,6 +1,9 @@
 <?php
 session_start();
 $idU = $_SESSION['id'];
+if($idU==''){
+    header("Location: index.php");
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -39,19 +42,28 @@ $idU = $_SESSION['id'];
                         if (msg == 1) {
                             $(location).attr('href', 'lista_administradoresHTML.php');
                         } else {
-                            alert('Error en la edicion');
+                            error('Error en la edicion');
                         }
                     },
                     error: function() {
-                        alert('Error al conectar al servidor...');
+                        error('Error al conectar al servidor...');
                     }
                 });
             } else {
-                alert("Campos por llenar");
+                error("Campos por llenar");
 
 
             }
 
+        }
+
+        function error(mensaje) {
+            $('#mensaje').html(mensaje);
+            $('#mensaje').animate({
+                height: "3rem"
+            });
+            setTimeout("$('#mensaje').html('');", 5000);
+            setTimeout("$('#mensaje').animate({height:\"0rem\"});", 5000);
         }
     </script>
     <link rel="stylesheet" href="css/styles.css">
@@ -76,7 +88,7 @@ $idU = $_SESSION['id'];
     }
     ?>
 
-    <header class="site-header">
+    <div class="site-header">
         <div class="contenedor-header contenido-header">
 
             <ul>
@@ -87,10 +99,11 @@ $idU = $_SESSION['id'];
                 echo "<li><a href=\"formulario_editar.php?id=$idU\">Edicion </a></li>";
                 echo "<li><a href=\"ver_detalle.php?id=$idU\">Detalle </a></li>";
                 ?>
+                <li><a href="salir.php">Cerrar Sesion</a></li>
             </ul>
 
         </div>
-    </header>
+    </div>
 
     <main class="contenedor seccion contenido-centrado">
         <button class="btnRegresar" onclick="regresa()">Regresar</button>
@@ -130,6 +143,7 @@ $idU = $_SESSION['id'];
 
             </fieldset>
         </form>
+        <div id="mensaje" class="mensaje"></div>
         <?php
         echo "<button class=\"btnEnviar\"onclick=\"valida('$id')\">Enviar</button>";
         ?>

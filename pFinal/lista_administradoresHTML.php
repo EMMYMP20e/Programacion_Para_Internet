@@ -1,4 +1,10 @@
 <?php
+session_start();
+$idU = $_SESSION['id'];
+if($idU==''){
+    header("Location: index.php");
+}
+
 require "conecta.php";
 
 $con = conecta();
@@ -8,8 +14,7 @@ $sql = "SELECT * FROM administradores WHERE status=1 AND eliminado=0";
 $res = mysql_query($sql, $con);
 $num = mysql_num_rows($res);
 
-session_start();
-$idU = $_SESSION['id'];
+
 ?>
 
 <!DOCTYPE html>
@@ -29,14 +34,23 @@ $idU = $_SESSION['id'];
                         if (res == 1) {
                             $('#fila' + fila).hide();
                         } else {
-                            alert('Error en la eliminacion');
+                            error('Error en la eliminacion');
                         }
                     },
                     error: function() {
-                        alert('Error al conectar al servidor...');
+                        error('Error al conectar al servidor...');
                     }
                 });
             }
+        }
+
+        function error(mensaje) {
+            $('#mensaje').html(mensaje);
+            $('#mensaje').animate({
+                height: "3rem"
+            });
+            setTimeout("$('#mensaje').html('');", 5000);
+            setTimeout("$('#mensaje').animate({height:\"0rem\"});", 5000);
         }
     </script>
     <link rel="stylesheet" href="css/styles.css">
@@ -44,7 +58,7 @@ $idU = $_SESSION['id'];
 
 <body>
 
-<header class="site-header">
+    <header class="site-header">
         <div class="contenedor-header contenido-header">
 
             <ul>
@@ -55,6 +69,7 @@ $idU = $_SESSION['id'];
                 echo "<li><a href=\"formulario_editar.php?id=$idU\">Edicion </a></li>";
                 echo "<li><a href=\"ver_detalle.php?id=$idU\">Detalle </a></li>";
                 ?>
+                <li><a href="salir.php">Cerrar Sesion</a></li>
             </ul>
 
         </div>
@@ -78,7 +93,8 @@ $idU = $_SESSION['id'];
             </tr>";
         }
         ?>
-
+    </table>
+    <div id="mensaje" class="mensaje"></div>
 </body>
 
 </html>
