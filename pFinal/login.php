@@ -1,4 +1,5 @@
 <?php
+session_start();
 require "conecta.php";
 $con = conecta();
 $correo = $_REQUEST['correo'];
@@ -11,6 +12,10 @@ $res = mysql_query($sql, $con);
 
 if ($res1 = mysql_result($res, 0, "correo") == $correo) {
     $bool = 1;
+    $idU    = mysql_result($res, 0, "id");
+    $nombre = mysql_result($res, 0, "nombre") . ' ' . mysql_result($res, 0, "apellidos");
+    $_SESSION['id']    = $idU;
+    $_SESSION['nombre'] = $nombre;
 } else {
     $bool = 0;
 }

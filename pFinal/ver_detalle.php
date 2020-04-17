@@ -1,3 +1,7 @@
+<?php
+session_start();
+$idU = $_SESSION['id'];
+?>
 <!DOCTYPE html>
 <html>
 
@@ -31,6 +35,22 @@
     }
     ?>
 
+    <header class="site-header">
+        <div class="contenedor-header contenido-header">
+
+            <ul>
+                <li><a href="bienvenida.php">Bienvenido</a></li>
+                <li><a href="lista_administradoresHTML.php">Administradores </a></li>
+                <li><a href="formulario_alta.php">Alta </a></li>
+                <?php
+                echo "<li><a href=\"formulario_editar.php?id=$idU\">Edicion </a></li>";
+                echo "<li><a href=\"ver_detalle.php?id=$idU\">Detalle </a></li>";
+                ?>
+            </ul>
+
+        </div>
+    </header>
+
     <main class="contenedor seccion contenido-centrado">
         <button class="btnRegresar" onclick="regresa()">Regresar</button>
 
@@ -57,8 +77,8 @@
                 } else {
                     echo "<p>Inactivo</p>";
                 }
-                
-                 ?>
+
+                ?>
             </div>
         </div>
 

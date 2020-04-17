@@ -1,3 +1,7 @@
+<?php
+session_start();
+$idU = $_SESSION['id'];
+?>
 <!DOCTYPE html>
 <html>
 
@@ -21,7 +25,7 @@
             var rol = document.formulario.rol.value;
 
             var formData = new FormData($("form#formulario")[0]);
-            formData.append('id',id);
+            formData.append('id', id);
 
             if (nombre != "" && apellidos != "" && correo != "" && rol != 0) {
                 $.ajax({
@@ -50,7 +54,6 @@
 
         }
     </script>
-    `
     <link rel="stylesheet" href="css/styles.css">
 
 </head>
@@ -73,9 +76,25 @@
     }
     ?>
 
+    <header class="site-header">
+        <div class="contenedor-header contenido-header">
+
+            <ul>
+                <li><a href="bienvenida.php">Bienvenido</a></li>
+                <li><a href="lista_administradoresHTML.php">Administradores </a></li>
+                <li><a href="formulario_alta.php">Alta </a></li>
+                <?php
+                echo "<li><a href=\"formulario_editar.php?id=$idU\">Edicion </a></li>";
+                echo "<li><a href=\"ver_detalle.php?id=$idU\">Detalle </a></li>";
+                ?>
+            </ul>
+
+        </div>
+    </header>
+
     <main class="contenedor seccion contenido-centrado">
         <button class="btnRegresar" onclick="regresa()">Regresar</button>
-        <form name="formulario" id="formulario" class="contacto" method="post" enctype="multipart/form-data">
+        <form name="formulario" id="formulario" method="post" enctype="multipart/form-data">
             <fieldset>
                 <?php
                 echo "

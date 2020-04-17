@@ -7,6 +7,9 @@ $sql = "SELECT * FROM administradores WHERE status=1 AND eliminado=0";
 
 $res = mysql_query($sql, $con);
 $num = mysql_num_rows($res);
+
+session_start();
+$idU = $_SESSION['id'];
 ?>
 
 <!DOCTYPE html>
@@ -41,18 +44,20 @@ $num = mysql_num_rows($res);
 
 <body>
 
-    <header class="site-header">
+<header class="site-header">
         <div class="contenedor-header contenido-header">
 
-                <ul>
-                    <li><a href="bienvenida.php">Bienvenido</a></li>
-                    <li><a href="lista_administradoresHTML.php">Listado </a></li>
-                    <li><a href="formulario_alta.php">Alta </a></li>
-                    <li><a href="#about">Edicion </a></li>
-                    <li><a href="#about">Detalle </a></li>
-                </ul>
+            <ul>
+                <li><a href="bienvenida.php">Bienvenido</a></li>
+                <li><a href="lista_administradoresHTML.php">Administradores </a></li>
+                <li><a href="formulario_alta.php">Alta </a></li>
+                <?php
+                echo "<li><a href=\"formulario_editar.php?id=$idU\">Edicion </a></li>";
+                echo "<li><a href=\"ver_detalle.php?id=$idU\">Detalle </a></li>";
+                ?>
+            </ul>
 
-        </div> <!-- contenedor -->
+        </div>
     </header>
 
     <table id="tabla" align="center" border="1" width="960">

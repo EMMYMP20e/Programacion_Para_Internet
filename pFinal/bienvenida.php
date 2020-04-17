@@ -1,3 +1,9 @@
+<?php
+session_start();
+$idU = $_SESSION['id'];
+$nombre = $_SESSION['nombre'];
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -19,47 +25,31 @@
 
             <ul>
                 <li><a href="bienvenida.php">Bienvenido</a></li>
-                <li><a href="lista_administradoresHTML.php">Listado </a></li>
+                <li><a href="lista_administradoresHTML.php">Administradores </a></li>
                 <li><a href="formulario_alta.php">Alta </a></li>
-                <li><a href="#about">Edicion </a></li>
-                <li><a href="#about">Detalle </a></li>
+                <?php
+                echo "<li><a href=\"formulario_editar.php?id=$idU\">Edicion </a></li>";
+                echo "<li><a href=\"ver_detalle.php?id=$idU\">Detalle </a></li>";
+                ?>
             </ul>
 
-        </div> <!-- contenedor -->
+        </div>
     </header>
 
-    <main class="contenedor seccion contenido-centrado">
+    <main class="contenedor seccion contenido-centrado-login">
+        <h1>Bienvenido</h1>
         <div class="anuncio">
             <div class="contenido-anuncio">
                 <?php
-                echo "
-                <legend>Ver Detalle ID: $id</legend>
-                <img src=\"archivos/$archivo_n\" width=\"100px\" height=\"100px\">
-                <label >Nombre Completo:</label>
-                <p>$nombre $apellidos</p>
-            
-                <label>Correo:</label>
-                <p>$correo</p>
-                <label>Rol:</label>";
-                if ($rol == '1') {
-                    echo "<p>Gerente</p>";
-                } else if ($rol == '2') {
-                    echo "<p>Ejecutivo</p>";
-                }
-                echo "<label>Status:</label>";
-                if ($status == '1') {
-                    echo "<p>Activo</p>";
-                } else {
-                    echo "<p>Inactivo</p>";
-                }
-
+                echo
+                    "<h3>ID:</h3>
+                    <p>$idU</p>
+                    <h3>Nombre:</h3>
+                    <p>$nombre</p>";
                 ?>
             </div>
         </div>
-
-
     </main>
-
 </body>
 
 </html>

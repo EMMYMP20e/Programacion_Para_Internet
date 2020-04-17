@@ -8,10 +8,6 @@ body {
     background-color: #009688;
     color: #00796b;
     font-family: base-font-family;
-    font-size: base-font-size;
-    line-height: base-line-height;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
     font: bold;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1.6rem;
@@ -37,7 +33,7 @@ body {
 }
 
 .seccion {
-    margin-top: 2rem;
+    margin-top: 0rem;
     margin-bottom: 2rem;
 }
 
@@ -195,51 +191,20 @@ tr:hover {
     padding: 1rem 2rem;
 }
 .contenido-anuncio p {
-    margin: 0;
+    margin: 1rem;
     color: #4f4f4f;
 }
+h1 {
+    text-align: center;
+    margin-bottom: 0rem;
+}
+
+h3 {
+    margin: 0rem 0.5rem;
+}
+
 img {
     display: block;
     margin-left: auto;
     margin-right: auto;
-}
-
-
-#popup {
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    z-index: 1001;
-}
- 
-.content-popup {
-    margin:0px auto;
-    margin-top:120px;
-    position:relative;
-    padding:10px;
-    width:500px;
-    min-height:250px;
-    border-radius:4px;
-    background-color:#FFFFFF;
-    box-shadow: 0 2px 5px #666666;
-}
- 
-.content-popup h2 {
-    color:#48484B;
-    border-bottom: 1px solid #48484B;
-    margin-top: 0;
-    padding-bottom: 4px;
-}
- 
-.popup-overlay {
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    z-index: 999;
-    display:none;
-    background-color: #777777;
-    cursor: pointer;
-    opacity: 0.7;
 }
