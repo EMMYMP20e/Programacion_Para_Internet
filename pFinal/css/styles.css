@@ -131,6 +131,12 @@ form {
     margin: 1rem 1rem 0rem 1.5rem;
 }
 
+.btnAlta {
+    background-color: #651fff;
+    color: white;
+    margin: 1rem 1rem 0.7rem 1.5rem;
+}
+
 button {
     border-radius: 8px;
     border: none;
@@ -220,4 +226,13 @@ img {
 .mensaje{
     color: #d32f2f;
     padding-left: 2rem;
+}
+
+.contenedor-alta-centrado{
+    max-width: 960px;
+}
+.contenedor-alta{
+    margin: 0 auto;
+    background-color: #0097a7;
+    border-radius: 1.5rem;
 }

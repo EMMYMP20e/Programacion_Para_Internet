@@ -1,7 +1,8 @@
 <?php
 session_start();
 $idU = $_SESSION['id'];
-if($idU==''){
+$nombreU =  $_SESSION['nombre'];
+if ($idU == '') {
     header("Location: index.php");
 }
 
@@ -52,6 +53,10 @@ $num = mysql_num_rows($res);
             setTimeout("$('#mensaje').html('');", 5000);
             setTimeout("$('#mensaje').animate({height:\"0rem\"});", 5000);
         }
+
+        function alta() {
+            window.location.href = 'formulario_alta.php';
+        }
     </script>
     <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -62,39 +67,40 @@ $num = mysql_num_rows($res);
         <div class="contenedor-header contenido-header">
 
             <ul>
-                <li><a href="bienvenida.php">Bienvenido</a></li>
-                <li><a href="lista_administradoresHTML.php">Administradores </a></li>
-                <li><a href="formulario_alta.php">Alta </a></li>
                 <?php
-                echo "<li><a href=\"formulario_editar.php?id=$idU\">Edicion </a></li>";
-                echo "<li><a href=\"ver_detalle.php?id=$idU\">Detalle </a></li>";
+                echo "<li><a href=\"bienvenida.php\">Bienvenido: $nombreU</a></li>";
                 ?>
+                <li><a href="lista_administradoresHTML.php">Administradores </a></li>
+                <li><a href="#">Productos </a></li>
+                <li><a href="#">Pedidos </a></li>
                 <li><a href="salir.php">Cerrar Sesion</a></li>
             </ul>
 
         </div>
     </header>
-
-    <table id="tabla" align="center" border="1" width="960">
-        <tr height="100">
-            <td id="titulo" align="center" colspan="5">Lista de Administradores</td>
-        </tr>
-        <?php
-        for ($i = 0; $i < $num; $i++) {
-            $id = mysql_result($res, $i, "id");
-            $nombre = mysql_result($res, $i, "nombre");
-            $apellidos = mysql_result($res, $i, "apellidos");
-            echo "<tr id=\"fila$id\" height=\"100\">";
-            echo "<td>$id</td>";
-            echo "<td>$nombre $apellidos</td>";
-            echo "<td><button class=\"btnCancelar\" onclick=\"eliminaFilas('$id')\">Eliminar</button></td>";
-            echo "<td><a href=\"formulario_editar.php?id=$id\"><button class=\"btnEditar\">Editar</button></a></td>";
-            echo "<td><a href=\"ver_detalle.php?id=$id\"><button class=\"btnEnviar\">Ver Detalle</button></a></td>
+    <main class="contenedor-alta seccion contenedor-alta-centrado">
+        <button class="btnAlta" onclick="alta()">Dar de Alta</button>
+        <table id="tabla" align="center" border="1" width="960">
+            <tr height="100">
+                <td id="titulo" align="center" colspan="5">Lista de Administradores</td>
+            </tr>
+            <?php
+            for ($i = 0; $i < $num; $i++) {
+                $id = mysql_result($res, $i, "id");
+                $nombre = mysql_result($res, $i, "nombre");
+                $apellidos = mysql_result($res, $i, "apellidos");
+                echo "<tr id=\"fila$id\" height=\"100\">";
+                echo "<td>$id</td>";
+                echo "<td>$nombre $apellidos</td>";
+                echo "<td><button class=\"btnCancelar\" onclick=\"eliminaFilas('$id')\">Eliminar</button></td>";
+                echo "<td><a href=\"formulario_editar.php?id=$id\"><button class=\"btnEditar\">Editar</button></a></td>";
+                echo "<td><a href=\"ver_detalle.php?id=$id\"><button class=\"btnEnviar\">Ver Detalle</button></a></td>
             </tr>";
-        }
-        ?>
-    </table>
-    <div id="mensaje" class="mensaje"></div>
+            }
+            ?>
+        </table>
+        <div id="mensaje" class="mensaje"></div>
+    </main>
 </body>
 
 </html>
