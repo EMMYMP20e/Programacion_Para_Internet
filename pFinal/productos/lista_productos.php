@@ -92,8 +92,8 @@ $num = mysql_num_rows($res);
                 echo "<td>$id</td>";
                 echo "<td>$nombre</td>";
                 echo "<td><button class=\"btnCancelar\" onclick=\"eliminaFilas('$id')\">Eliminar</button></td>";
-                echo "<td><a href=\"form_edita_productos.php?id=$id\"><button class=\"btnEditar\">Editar</button></a></td>";
-                echo "<td><a href=\"ver_detalle.php?id=$id\"><button class=\"btnEnviar\">Ver Detalle</button></a></td>
+                echo "<td><a href=\"form_edita_producto.php?id=$id\"><button class=\"btnEditar\">Editar</button></a></td>";
+                echo "<td><a href=\"ver_detalle_producto.php?id=$id\"><button class=\"btnEnviar\">Ver Detalle</button></a></td>
             </tr>";
             }
             ?>

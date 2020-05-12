@@ -3,37 +3,38 @@ session_start();
 $idU = $_SESSION['id'];
 $nombreU = $_SESSION['nombre'];
 if ($idU == '') {
-    header("Location: index.php");
+    header("Location: ../index.php");
 }
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>Ver Detalle</title>
-    <script src="js/jquery-3.3.1.min.js"></script>
+    <title>Ver Detalle Producto</title>
+    <script src="../js/jquery-3.3.1.min.js"></script>
     <script>
         function regresa() {
-            window.location.href = 'lista_administradoresHTML.php';
+            window.location.href = 'lista_productos.php';
         }
     </script>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
 
 <body>
     <?php
-    require "conecta.php";
+    require "../conecta.php";
     $con = conecta();
     $id = $_REQUEST['id'];
 
-    $sql = "SELECT * FROM Administradores WHERE id=$id";
+    $sql = "SELECT * FROM Productos WHERE id=$id";
     $res = mysql_query($sql, $con);
     $num = mysql_num_rows($res);
     for ($i = 0; $i < $num; $i++) {
         $nombre = mysql_result($res, $i, "nombre");
-        $apellidos = mysql_result($res, $i, "apellidos");
-        $correo = mysql_result($res, $i, "correo");
-        $rol = mysql_result($res, $i, "rol");
+        $codigo = mysql_result($res, $i, "codigo");
+        $descripcion = mysql_result($res, $i, "descripcion");
+        $costo = mysql_result($res, $i, "costo");
+        $stock = mysql_result($res, $i, "stock");
         $status = mysql_result($res, $i, "status");
         $archivo_n = mysql_result($res, $i, "archivo_n");
     }
@@ -44,12 +45,12 @@ if ($idU == '') {
 
             <ul>
                 <?php
-                echo "<li><a href=\"bienvenida.php\">Bienvenido: $nombreU</a></li>";
+                echo "<li><a href=\"../bienvenida.php\">Bienvenido: $nombreU</a></li>";
                 ?>
-                <li><a href="lista_administradoresHTML.php">Administradores </a></li>
-                <li><a href="productos/lista_productos.php">Productos </a></li>
+                <li><a href="../lista_administradoresHTML.php">Administradores </a></li>
+                <li><a href="lista_productos.php">Productos </a></li>
                 <li><a href="#">Pedidos </a></li>
-                <li><a href="salir.php">Cerrar Sesion</a></li>
+                <li><a href="../salir.php">Cerrar Sesion</a></li>
             </ul>
 
         </div>
@@ -63,18 +64,17 @@ if ($idU == '') {
                 <?php
                 echo "
                 <legend>Ver Detalle ID: $id</legend>
-                <img src=\"archivos/$archivo_n\" width=\"100px\" height=\"100px\">
-                <label >Nombre Completo:</label>
-                <p>$nombre $apellidos</p>
-            
-                <label>Correo:</label>
-                <p>$correo</p>
-                <label>Rol:</label>";
-                if ($rol == '1') {
-                    echo "<p>Gerente</p>";
-                } else if ($rol == '2') {
-                    echo "<p>Ejecutivo</p>";
-                }
+                <img src=\"../archivos_productos/$archivo_n\" width=\"80px\" height=\"130px\">
+                <label >Nombre:</label>
+                <p>$nombre</p>
+                <label >Codigo:</label>
+                <p>$codigo</p>
+                <label>Descripcion:</label>
+                <p>$descripcion</p>
+                <label>Costo:</label>
+                <p>$costo</p>
+                <label>Stock:</label>
+                <p>$stock</p>";
                 echo "<label>Status:</label>";
                 if ($status == '1') {
                     echo "<p>Activo</p>";
@@ -85,10 +85,7 @@ if ($idU == '') {
                 ?>
             </div>
         </div>
-
-
     </main>
-
 </body>
 
 </html>

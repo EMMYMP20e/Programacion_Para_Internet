@@ -27,14 +27,13 @@ if ($idU == '') {
             var descripcion = document.formulario.descripcion.value;
             var costo = document.formulario.costo.value;
             var stock = document.formulario.stock.value;
-            var archivo = document.formulario.archivo.value;
-
+            
             var formData = new FormData($("form#formulario")[0]);
             formData.append('id', id);
 
-            if (nombre != "" && apellidos != "" && correo != "" && rol != 0) {
+            if (nombre != "" && codigo != "" && descripcion != "" && costo != "" && stock != "") {
                 $.ajax({
-                    url: 'edita_administrador.php',
+                    url: 'php/edita_producto.php',
                     type: 'post',
                     data: formData,
                     processData: false,
@@ -42,7 +41,7 @@ if ($idU == '') {
                     success: function(msg) {
                         console.log(msg);
                         if (msg == 1) {
-                            $(location).attr('href', 'lista_administradoresHTML.php');
+                            $(location).attr('href', 'lista_productos.php');
                         } else {
                             error('Error en la edicion');
                         }
@@ -53,8 +52,6 @@ if ($idU == '') {
                 });
             } else {
                 error("Campos por llenar");
-
-
             }
 
         }
@@ -68,24 +65,25 @@ if ($idU == '') {
             setTimeout("$('#mensaje').animate({height:\"0rem\"});", 5000);
         }
     </script>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
 
 </head>
 
 <body>
     <?php
-    require "conecta.php";
+    require "../conecta.php";
     $con = conecta();
     $id = $_REQUEST['id'];
 
-    $sql = "SELECT * FROM Administradores WHERE id=$id";
+    $sql = "SELECT * FROM Productos WHERE id=$id";
     $res = mysql_query($sql, $con);
     $num = mysql_num_rows($res);
     for ($i = 0; $i < $num; $i++) {
         $nombre = mysql_result($res, $i, "nombre");
-        $apellidos = mysql_result($res, $i, "apellidos");
-        $correo = mysql_result($res, $i, "correo");
-        $rol = mysql_result($res, $i, "rol");
+        $codigo = mysql_result($res, $i, "codigo");
+        $descripcion = mysql_result($res, $i, "descripcion");
+        $costo = mysql_result($res, $i, "costo");
+        $stock = mysql_result($res, $i, "stock");
         $archivo_n = mysql_result($res, $i, "archivo_n");
     }
     ?>
@@ -95,12 +93,12 @@ if ($idU == '') {
 
             <ul>
                 <?php
-                echo "<li><a href=\"bienvenida.php\">Bienvenido: $nombreU</a></li>";
+                echo "<li><a href=\"../bienvenida.php\">Bienvenido: $nombreU</a></li>";
                 ?>
-                <li><a href="lista_administradoresHTML.php">Administradores </a></li>
-                <li><a href="#">Productos </a></li>
+                <li><a href="../lista_administradoresHTML.php">Administradores </a></li>
+                <li><a href="lista_productos.php">Productos </a></li>
                 <li><a href="#">Pedidos </a></li>
-                <li><a href="salir.php">Cerrar Sesion</a></li>
+                <li><a href="../salir.php">Cerrar Sesion</a></li>
             </ul>
 
         </div>
@@ -111,37 +109,22 @@ if ($idU == '') {
         <form name="formulario" id="formulario" method="post" enctype="multipart/form-data">
             <fieldset>
                 <?php
-                echo "
-                               
+                echo "            
                 <legend>Editar ID: $id</legend>
-        <label for=\"nombre\">Nombre:</label>
-        <input value=$nombre type=\"text\" name=\"nombre\">
-     
-        <label for=\"apellidos\">Apellidos:</label>
-        <input value=$apellidos type=\"text\" name=\"apellidos\">
-        <label for=\"correo\">Correo:</label>
-        <input value=$correo type=\"email\" name=\"correo\">
-        <label for=\"pass\">Password:</label>
-        <input type=\"password\" name=\"pass\">"; ?>
-                <label for="rol">Rol:</label>
-                <select name="rol">
-                    <option value="0">Seleccionar Rol</option>"
-                    <option value="1" <?php if ($rol == '1') {
-                                            echo ("selected");
-                                        } ?>>Gerente</option>
-                    <option value="2" <?php if ($rol == '2') {
-                                            echo ("selected");
-                                        } ?>>Ejecutivo</option>
-                </select>
-
-                <?php
-                echo "
-            <img src=\"archivos/$archivo_n\" width=\"100px\" height=\"100px\">
-                "; ?>
+                <label for=\"nombre\">Nombre:</label>
+                <input value=$nombre type=\"text\" name=\"nombre\">
+                <label for=\"codigo\">Codigo:</label>
+                <input value=$codigo type=\"number\" name=\"codigo\">
+                <label for=\"descripcion\">Descripcion:</label>
+                <input value=$descripcion type=\"text\" name=\"descripcion\">
+                <label for=\"costo\">Costo:</label>
+                <input value=$costo type=\"number\" name=\"costo\">
+                <label for=\"stock\">Stock:</label>
+                <input value=$stock type=\"number\" name=\"stock\">
+                <img src=\"../archivos_productos/$archivo_n\" width=\"80px\" height=\"130px\">"; ?>
+                
                 <label for="archivo">Cambiar Foto:</label>
                 <input type="file" name="archivo">
-
-
             </fieldset>
         </form>
         <div id="mensaje" class="mensaje"></div>
