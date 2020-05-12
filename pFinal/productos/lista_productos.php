@@ -3,14 +3,14 @@ session_start();
 $idU = $_SESSION['id'];
 $nombreU =  $_SESSION['nombre'];
 if ($idU == '') {
-    header("Location: index.php");
+    header("Location: ../index.php");
 }
 
-require "conecta.php";
+require "../conecta.php";
 
 $con = conecta();
 
-$sql = "SELECT * FROM administradores WHERE status=1 AND eliminado=0";
+$sql = "SELECT * FROM productos WHERE status=1 AND eliminado=0";
 
 $res = mysql_query($sql, $con);
 $num = mysql_num_rows($res);
@@ -21,16 +21,16 @@ $num = mysql_num_rows($res);
 <!DOCTYPE html>
 
 <head>
-    <title>Listado</title>
-    <script src="js/jquery-3.3.1.min.js"></script>
+    <title>Listado Productos</title>
+    <script src="../js/jquery-3.3.1.min.js"></script>
     <script>
         function eliminaFilas(fila) {
             if (confirm('borrar registro ' + fila + '?')) {
                 $.ajax({
-                    url: 'elimina_administradores.php',
+                    url: 'php/elimina_producto.php',
                     type: 'post',
                     dataType: 'text',
-                    data: 'id=' + fila, //para concatenar varias variables: 'id='+fila+'&var1=5'
+                    data: 'id=' + fila,
                     success: function(res) {
                         if (res == 1) {
                             $('#fila' + fila).hide();
@@ -55,10 +55,10 @@ $num = mysql_num_rows($res);
         }
 
         function alta() {
-            window.location.href = 'formulario_alta.php';
+            window.location.href = 'form_alta_productos.php';
         }
     </script>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
 
 <body>
@@ -68,12 +68,12 @@ $num = mysql_num_rows($res);
 
             <ul>
                 <?php
-                echo "<li><a href=\"bienvenida.php\">Bienvenido: $nombreU</a></li>";
+                echo "<li><a href=\"../bienvenida.php\">Bienvenido: $nombreU</a></li>";
                 ?>
-                <li><a href="lista_administradoresHTML.php">Administradores </a></li>
-                <li><a href="productos/lista_productos.php">Productos </a></li>
+                <li><a href="../lista_administradoresHTML.php">Administradores </a></li>
+                <li><a href="lista_productos.php">Productos </a></li>
                 <li><a href="#">Pedidos </a></li>
-                <li><a href="salir.php">Cerrar Sesion</a></li>
+                <li><a href="../salir.php">Cerrar Sesion</a></li>
             </ul>
 
         </div>
@@ -82,24 +82,23 @@ $num = mysql_num_rows($res);
         <button class="btnAlta" onclick="alta()">Dar de Alta</button>
         <table id="tabla" align="center" border="1" width="960">
             <tr height="100">
-                <td id="titulo" align="center" colspan="5">Lista de Administradores</td>
+                <td id="titulo" align="center" colspan="5">Lista de Productos</td>
             </tr>
             <?php
             for ($i = 0; $i < $num; $i++) {
                 $id = mysql_result($res, $i, "id");
                 $nombre = mysql_result($res, $i, "nombre");
-                $apellidos = mysql_result($res, $i, "apellidos");
                 echo "<tr id=\"fila$id\" height=\"100\">";
                 echo "<td>$id</td>";
-                echo "<td>$nombre $apellidos</td>";
+                echo "<td>$nombre</td>";
                 echo "<td><button class=\"btnCancelar\" onclick=\"eliminaFilas('$id')\">Eliminar</button></td>";
-                echo "<td><a href=\"formulario_editar.php?id=$id\"><button class=\"btnEditar\">Editar</button></a></td>";
+                echo "<td><a href=\"form_edita_productos.php?id=$id\"><button class=\"btnEditar\">Editar</button></a></td>";
                 echo "<td><a href=\"ver_detalle.php?id=$id\"><button class=\"btnEnviar\">Ver Detalle</button></a></td>
             </tr>";
             }
             ?>
         </table>
-        <div id="mensaje" class="mensaje"></div>
+        <div id="mensaje" class="contenedor mensaje"></div>
     </main>
 </body>
 
