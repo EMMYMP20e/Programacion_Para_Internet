@@ -5,7 +5,7 @@ html {
 }
 
 body {
-    background-color: #009688;
+    background-color: white;
     color: #00796b;
     background: linear-gradient(to right, #03dac6, #018786);
     font-family: base-font-family;
@@ -154,6 +154,7 @@ button {
     font-size: larger;
 }
 
+
 td,
 th {
     border: 1px solid #ddd;
@@ -169,6 +170,10 @@ tr:hover {
     border-collapse: collapse;
     background-color: #ffffff;
     color: black;
+}
+
+.subtitulo{
+    color: #26a69a;
 }
 
 .btnEditar {

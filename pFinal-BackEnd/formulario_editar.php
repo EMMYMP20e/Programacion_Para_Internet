@@ -98,7 +98,8 @@ if ($idU == '') {
                 ?>
                 <li><a href="lista_administradoresHTML.php">Administradores </a></li>
                 <li><a href="productos/lista_productos.php">Productos </a></li>
-                <li><a href="#">Pedidos </a></li>
+                <li><a href="pedidos/lista_pedidos.php">Pedidos </a></li>
+                <li><a href="banners/lista_banners.php">Banners </a></li>
                 <li><a href="salir.php">Cerrar Sesion</a></li>
             </ul>
 

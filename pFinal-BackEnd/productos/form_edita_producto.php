@@ -27,7 +27,7 @@ if ($idU == '') {
             var descripcion = document.formulario.descripcion.value;
             var costo = document.formulario.costo.value;
             var stock = document.formulario.stock.value;
-            
+
             var formData = new FormData($("form#formulario")[0]);
             formData.append('id', id);
 
@@ -97,7 +97,8 @@ if ($idU == '') {
                 ?>
                 <li><a href="../lista_administradoresHTML.php">Administradores </a></li>
                 <li><a href="lista_productos.php">Productos </a></li>
-                <li><a href="#">Pedidos </a></li>
+                <li><a href="../pedidos/lista_pedidos.php">Pedidos </a></li>
+                <li><a href="../banners/lista_banners.php">Banners </a></li>
                 <li><a href="../salir.php">Cerrar Sesion</a></li>
             </ul>
 
@@ -122,7 +123,7 @@ if ($idU == '') {
                 <label for=\"stock\">Stock:</label>
                 <input value=$stock type=\"number\" name=\"stock\">
                 <img src=\"../archivos_productos/$archivo_n\" width=\"80px\" height=\"130px\">"; ?>
-                
+
                 <label for="archivo">Cambiar Foto:</label>
                 <input type="file" name="archivo">
             </fieldset>
