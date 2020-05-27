@@ -3,16 +3,24 @@ html {
     font-size: 62.5%;
 }
 
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
 body {
-    color: #00796b;
+    color: black;
     background-color: #eceff1;
     font-family: "Raleway", sans-serif;
     font-size: 1.6rem;
     margin: 0;
 }
 
+
 .site-header {
-    padding: 0 0 3rem 0;
+    padding: 0;
 }
 
 .contenedor-header {
@@ -27,6 +35,105 @@ body {
     flex-direction: column;
     justify-content: space-between;
     text-align: center;
+}
+
+.contenedor {
+    width: 95%;
+    max-width: 100rem;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 1.5rem;
+    padding: 0rem 8rem;
+}
+
+.entrada-blog a {
+    display: inline-block;
+    background-color: #2196F3;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.descripcion{
+    background-color: #3f51b5;
+    color: white;
+    padding: 0rem 1.2rem;
+    border-bottom-left-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+}
+
+h3{
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+    padding-top: 0.5rem;
+    text-align: center;
+}
+
+p{
+    margin-top: 0.7rem;
+    margin-bottom: 0.7rem;
+}
+
+
+.btnComprar {
+    background-color: #f4511e;
+    color: white;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    padding: 10px 40px;
+    text-decoration: none;
+    margin: 0rem 0rem 1rem 0rem;
+    width: 100%;
+}
+
+.btnComprar:hover{
+    background-color: #b23c17;
+}
+.btnComprar:focus{
+    background-color: #f4511e;
+}
+
+@media (min-width:768px) {
+    .tres-columnas {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 2rem;
+    }
+}
+
+
+
+.banner{
+    width: 100rem;
+    height: 42rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+article{
+    padding: 5rem;
+}
+.img-beer{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.item{
+    border-radius: 1.5rem;
+    border-style: solid;
+    border-width: thin;
+    border-color: #fbe9e7;
+    background-color: #eceff1;
+}
+
+.item:hover{
+    background-color: #FFBC61;
 }
 
 /** Navegacion **/
@@ -70,7 +177,7 @@ li:last-child a:hover {
     width: 30px;
     height: 24px;
 }
-.logo{
+.logo {
     width: 110px;
     height: 80px;
     padding: 0rem;
