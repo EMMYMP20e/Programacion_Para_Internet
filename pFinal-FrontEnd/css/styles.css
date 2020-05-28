@@ -44,14 +44,37 @@ body {
   padding: 0rem 8rem;
 }
 
+.contenedor-detalle {
+  border-radius: 1.5rem;
+  max-width: 80rem;
+  margin: 0 auto;
+  background-color: #ffbc61;
+  box-shadow: 0 1px 5px 0 hsla(0, 0%, 61%, 0.5);
+  padding: 0rem 0rem;
+}
+
 .seccion {
   margin-top: 0rem;
   margin-bottom: 2rem;
 }
 
+.seccion-detalle {
+  margin-top: 8rem;
+  margin-bottom: 8rem;
+  display: flex;
+  align-items: center;
+}
+
 .contenido-centrado {
   max-width: 800px;
   min-width: 500px;
+}
+
+.form-detalle {
+  background-color: white;
+  border-bottom-right-radius: 1.5rem;
+  border-top-right-radius: 1.5rem;
+  width: 100%;
 }
 
 form {
@@ -86,14 +109,21 @@ textarea {
   border-radius: 1rem;
 }
 
+.dato {
+  display: block;
+  width: 95%;
+  margin: 0rem 0rem 0.5rem 0.7rem;
+}
+
 .entrada-blog a {
   display: inline-block;
-  background-color: #2196f3;
+  background-color: #3f51b5;
   color: white;
   padding: 10px 20px;
   text-decoration: none;
   font-weight: bold;
   text-transform: uppercase;
+  width: 100%;
 }
 
 .descripcion {
@@ -155,6 +185,35 @@ p {
   background-color: #3f51b5;
 }
 
+
+.btnCarrito {
+  background-color: #f4511e;
+  color: white;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+  margin: 4px 2px;
+  padding: 10px 40px;
+  text-decoration: none;
+  margin: 0rem 0rem 1rem 0rem;
+}
+
+.cantidad{
+  float: right;
+  margin-left: 1.5rem;
+}
+.cantidad input{
+  width: 85%;
+}
+
+.btnCarrito:hover {
+  background-color: #b23c17;
+}
+.btnCarrito:focus {
+  background-color: #f4511e;
+}
+
+
 @media (min-width: 768px) {
   .tres-columnas {
     display: grid;
@@ -177,13 +236,23 @@ article {
 
 h6 {
   margin: 0.5rem;
-  color: gray;
+  color: #3f51b5;
 }
 
 .img-beer {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+.imagen {
+  float: left;
+}
+
+.img-beer-detail {
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .item {
@@ -193,13 +262,14 @@ h6 {
   border-color: #fbe9e7;
   background-color: #eceff1;
   min-width: 190px;
+  box-shadow: 0 1px 5px 0 hsla(0, 0%, 61%, 0.5);
 }
 
 .item:hover {
   background-color: #ffbc61;
 }
 
-.mensaje{
+.mensaje {
   color: #3f51b5;
   padding-left: 2rem;
   background-color: #e8eaf6;

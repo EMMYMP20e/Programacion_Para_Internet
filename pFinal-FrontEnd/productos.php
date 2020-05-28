@@ -41,6 +41,7 @@ $numProcuctos = mysql_num_rows($resProductos);
         <?php
         $randoms = array();
         for ($i = 0; $i < $numProcuctos; $i++) {
+            $id = mysql_result($resProductos, $i, "id");
             $archivo_n = mysql_result($resProductos, $i, "archivo_n");
             $nombre = mysql_result($resProductos, $i, "nombre");
             $codigo = mysql_result($resProductos, $i, "codigo");
@@ -53,7 +54,7 @@ $numProcuctos = mysql_num_rows($resProductos);
                             <h3>$nombre</h3>
                             <p>Código: $codigo</p>
                             <p>$ $costo</p>
-                            <button class=\"btnComprar\">Comprar</button>
+                            <a href=\"detalle_producto.php?id=$id\"><button class=\"btnComprar\">Comprar</button></a>
                         </div>
                     </div>
                 </article>

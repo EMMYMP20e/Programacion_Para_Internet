@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION['usuario'] = time() . "" . rand();
+
 
 
 require "php/conecta.php";
@@ -59,6 +59,7 @@ $numProcuctos = mysql_num_rows($resProductos);
                 $rand = rand(0, $numProcuctos - 1);
             } while (false !== array_search($rand, $randoms));
             array_push($randoms, $rand);
+            $id = mysql_result($resProductos, $rand, "id");
             $archivo_n = mysql_result($resProductos, $rand, "archivo_n");
             $nombre = mysql_result($resProductos, $rand, "nombre");
             $codigo = mysql_result($resProductos, $rand, "codigo");
@@ -71,7 +72,7 @@ $numProcuctos = mysql_num_rows($resProductos);
                             <h3>$nombre</h3>
                             <p>Código: $codigo</p>
                             <p>$ $costo</p>
-                            <button class=\"btnComprar\">Comprar</button>
+                            <a href=\"detalle_producto.php?id=$id\"><button class=\"btnComprar\">Comprar</button></a>
                         </div>
                     </div>
                 </article>
