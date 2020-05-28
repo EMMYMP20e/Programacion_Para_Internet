@@ -10,43 +10,45 @@
     <link rel="stylesheet" href="css/styles.css">
     <script src="js/jquery-3.3.1.min.js"></script>
     <script>
-        function agregar(id, stock) {
-            /*var cantidad = document.formulario.cantidad.value;
-            if(cantidad>stock){
-                alert('La cantidad es mayor a la disponible');
-            }
-            else if(cantidad<=0){
-                alert('Introduzca cantidad válida')
-            }*/
-            $.ajax({
-                url: 'php/agregaCompra.php',
-                type: 'post',
-                data: {
-                    id: nombre,
-                    usuario: usuario,
-                    stock: stock
-                },
-                success: function(msg) {
-                    if (msg == 1) {
-                        $(location).attr('href', '../productos.php');
-                    } else {
-                        alert('Error en el envío del correo');
+        function agregar(id, costo, stock) {
+            var cantidad = document.getElementById("cantidad").value;
+            if (cantidad > stock) {
+                error('La cantidad es mayor a la disponible');
+                return;
+            } else if (cantidad <= 0) {
+                error('Introduzca cantidad válida');
+                return;
+            } else {
+                $.ajax({
+                    url: 'php/agregaCompra.php',
+                    type: 'post',
+                    data: {
+                        id: id,
+                        cantidad: cantidad,
+                        costo: costo
+                    },
+                    success: function(msg) {
+                        if (msg == 1) {
+                            $(location).attr('href', 'carrito.php');
+                        } else {
+                            error('Error en el envío del correo');
+                        }
+                    },
+                    error: function() {
+                        error('Error al conectar al servidor...');
                     }
-                },
-                error: function() {
-                    alert('Error al conectar al servidor...');
-                }
-            });
+                });
+            }
         }
 
-        /*function alert(mensaje) {
+        function error(mensaje) {
             $('#mensaje').html(mensaje);
             $('#mensaje').animate({
                 height: "3rem"
             });
             setTimeout("$('#mensaje').html('');", 5000);
             setTimeout("$('#mensaje').animate({height:\"0rem\"});", 5000);
-        }*/
+        }
     </script>
 </head>
 
@@ -109,16 +111,17 @@
                     <div class=\"dato\">$$costo</div>
                     $usuario
                     "; ?>
-                    <div class="cantidad">
-                        <label for="cantidad">Cantidad:</label>
-                        <input type="number" name="cantidad" value="0">
-                        <?php
-                        echo "<button class=\"btnCarrito\" onclick=\"agregar($id, $stock)\">Agregar al Carrito</button>";
-                        ?>
-                        <div id="mensaje" class="mensaje"></div>
-                    </div>
             </form>
+            <div class="cantidad">
+                <label for="cantidad">Cantidad:</label>
+                <input id="cantidad" type="number" name="cantidad" value="0">
+                <?php
+                echo "<button class=\"btnCarrito\" type=\"button\" onclick=\"agregar($id, $costo, $stock)\">Agregar al Carrito</button>";
+                ?>
 
+            </div>
+            </fieldset>
+            <div id="mensaje" class="mensaje"></div>
         </div>
     </main>
 </body>
