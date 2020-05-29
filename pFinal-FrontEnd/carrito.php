@@ -23,11 +23,62 @@ $num = mysql_num_rows($res);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos</title>
+    <title>Carrito</title>
     <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,700,900" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script>
+        function eliminaCompra(id_pp){
+            $.ajax({
+                    url: 'php/eliminaCompra.php',
+                    type: 'post',
+                    data: {
+                        id_pp: id_pp
+                    },
+                    success: function(msg) {
+                        if (msg == 1) {
+                            $(location).attr('href', 'carrito.php');
+                        } else {
+                            error('Error en la eliminacion del producto');
+                        }
+                    },
+                    error: function() {
+                        error('Error al conectar al servidor...');
+                    }
+                });
+        }
 
+        function terminaCompra(id_pedido){
+            $.ajax({
+                    url: 'php/enviarPedido.php',
+                    type: 'post',
+                    data: {
+                        id_pedido: id_pedido
+                    },
+                    success: function(msg) {
+                        if (msg == 1) {
+                            alert('Tu pedido ha sido enviado');
+                            $(location).attr('href', 'carrito.php');
+                        } else {
+                            error('Error en el envío del pedido');
+                        }
+                    },
+                    error: function() {
+                        error('Error al conectar al servidor...');
+                    }
+                });
+        }
+
+        function error(mensaje) {
+            $('#mensaje').html(mensaje);
+            $('#mensaje').animate({
+                height: "3rem"
+            });
+            setTimeout("$('#mensaje').html('');", 5000);
+            setTimeout("$('#mensaje').animate({height:\"0rem\"});", 5000);
+        }
+    </script>
 </head>
 
 <body>
@@ -51,6 +102,7 @@ $num = mysql_num_rows($res);
         <?php
         $total = 0;
         for ($i = 0; $i < $num; $i++) {
+            $id = mysql_result($res, $i, "id");
             $id_producto = mysql_result($res, $i, "id_producto");
             $nombre = mysql_result($res, $i, "nombre");
             $cantidad = mysql_result($res, $i, "cantidad");
@@ -77,7 +129,7 @@ $num = mysql_num_rows($res);
                         <div class=\"precio\">$$subtotal</div>
                     </div>
                     <div class=\"eliminar\">
-                        <button class=\"btnEliminar\">Eliminar</button>
+                        <button class=\"btnEliminar\" onclick=\"eliminaCompra($id)\">Eliminar</button>
                     </div>
                 </div>
             </div>";
@@ -85,7 +137,7 @@ $num = mysql_num_rows($res);
         echo "
         <div class=\"contenedor-total\">
             <div class=\"total-compra\">
-                <button class=\"btnTerminar\">Enviar Pedido</button>
+                <button class=\"btnTerminar\" onclick=\"terminaCompra($id_pedido)\">Enviar Pedido</button>
             </div>
             <div class=\"total-text\">
                 Total:
@@ -93,6 +145,7 @@ $num = mysql_num_rows($res);
             <div class=\"total\">
                 <div class=\"precio\">$$total</div>
             </div>
+            <div id=\"mensaje\" class=\"mensaje\"></div>
         </div>
 
         ";

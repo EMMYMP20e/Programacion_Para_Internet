@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos</title>
+    <title>Producto</title>
     <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,700,900" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
@@ -29,7 +29,8 @@
                     },
                     success: function(msg) {
                         if (msg == 1) {
-                            $(location).attr('href', 'carrito.php');
+                            alert('Tu compra se agregó al carrito');
+                            $(location).attr('href', 'productos.php');
                         } else {
                             error('Error en el envío del correo');
                         }
